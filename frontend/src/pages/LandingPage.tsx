@@ -22,6 +22,13 @@ export default function LandingPage() {
           <Link to="/signup" className="btn btn-primary btn-lg">
             Get PebloNotes <ArrowRight size={18} style={{ marginLeft: 8 }} />
           </Link>
+          
+          <div style={{ marginTop: 24, display: 'flex', justifyContent: 'center' }}>
+            <div style={{ background: 'rgba(245, 183, 49, 0.1)', color: 'var(--amber)', padding: '8px 16px', borderRadius: '8px', fontSize: '0.85rem', display: 'inline-flex', alignItems: 'center', gap: '8px', border: '1px solid rgba(245, 183, 49, 0.2)' }}>
+              <span style={{ fontSize: '1.2rem' }}>💡</span> 
+              <span><strong>Note for evaluators:</strong> The backend is hosted on Render's free tier. Initial login may take ~50 seconds to wake the server.</span>
+            </div>
+          </div>
         </header>
 
         <section className="landing-preview animate-fade" style={{ animationDelay: '0.2s' }}>
