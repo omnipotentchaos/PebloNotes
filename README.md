@@ -8,9 +8,8 @@ Think Evernote meets AI: three-panel workspace, markdown support, keyboard-first
 
 ## Submission Assets Provided by Candidate
 
-**[TODO FOR YOU: Please add your links below before submitting]**
-- **Demo Video:** [INSERT YOUR YOUTUBE/LOOM LINK HERE]
-- **Live Deployment:** [INSERT YOUR VERCEL/RENDER LINK HERE - OPTIONAL]
+- **Demo Video:** [Watch on YouTube](https://youtu.be/C0KbjGEvhhU?si=aO8sb1S9VDL8V7EK)
+- **Live Deployment:** [View Live App](https://peblo-notes-swart.vercel.app/)
 
 ---
 
@@ -76,17 +75,17 @@ Think Evernote meets AI: three-panel workspace, markdown support, keyboard-first
 
 ---
 
-## Quick Start
+## Setup Instructions
 
-### Prerequisites
-- Node.js >= 18, Python >= 3.10
-- Supabase account (free tier)
-- Cerebras API key (free tier)
+### 1. Configure Environment Variables
+See the `.env.example` file in the root directory for all required keys. You will need:
+- Supabase account (free tier) for the database URL and keys.
+- Cerebras API key (free tier) for the AI model.
 
 ### 1. Database Setup
 Create a Supabase project -> SQL Editor -> paste `backend/schema.sql` -> Run.
 
-### 2. Backend Setup
+### 3. Install Backend Dependencies & Run
 ```bash
 cd backend
 python -m venv venv && source venv/bin/activate  # Windows: venv\Scripts\activate
@@ -95,7 +94,7 @@ cp ../.env.example .env  # Fill in your keys
 uvicorn app.main:app --reload --port 8000
 ```
 
-### 3. Frontend Setup
+### 4. Install Frontend Dependencies & Run
 ```bash
 cd frontend
 npm install
@@ -161,7 +160,17 @@ PebloNotes/
 
 ## Sample Outputs
 
-### AI Summary Response
+### Application Screenshots
+*(Add your screenshots to an `assets/` folder and link them here, or drag and drop images directly into GitHub to auto-generate the markdown)*
+
+```markdown
+<!-- Example of how to link your screenshots once you have them -->
+![Workspace View](assets/workspace.png)
+![Insights Dashboard](assets/insights.png)
+```
+
+### AI-Generated Summary & Action Items
+*(Example response from `/ai/generate-summary`)*
 ```json
 {
   "summary": "Sprint planning discussion covering UI mockup deadlines, API restructuring, and Q2 deployment timeline.",
@@ -194,4 +203,39 @@ PebloNotes/
     "total_tokens": 3670
   }
 }
+```
+
+### Database Schema (Abridged)
+```sql
+CREATE TABLE users (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name TEXT NOT NULL,
+    email TEXT UNIQUE NOT NULL,
+    password_hash TEXT NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT now()
+);
+
+CREATE TABLE notes (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    title TEXT DEFAULT 'Untitled',
+    content TEXT DEFAULT '',
+    tags TEXT[] DEFAULT '{}',
+    is_archived BOOLEAN DEFAULT FALSE,
+    is_public BOOLEAN DEFAULT FALSE,
+    ai_summary TEXT,
+    ai_action_items TEXT[],
+    updated_at TIMESTAMPTZ DEFAULT now()
+);
+
+CREATE TABLE ai_usage_logs (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    tokens_used INTEGER DEFAULT 0,
+    operation TEXT DEFAULT 'generate_summary'
+);
+
+-- RLS Policies ensure users can only access their own notes
+ALTER TABLE notes ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Users can manage own notes" ON notes FOR ALL USING (auth.uid() = user_id);
 ```
