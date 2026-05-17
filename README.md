@@ -6,11 +6,9 @@ Think Evernote meets AI: three-panel workspace, markdown support, keyboard-first
 
 ---
 
-## Submission Assets Provided by Candidate
-
-**[TODO FOR YOU: Please add your links below before submitting]**
-- **Demo Video:** [INSERT YOUR YOUTUBE/LOOM LINK HERE]
-- **Live Deployment:** [INSERT YOUR VERCEL/RENDER LINK HERE - OPTIONAL]
+## Submission Assets 
+- **Demo Video:** https://youtu.be/C0KbjGEvhhU?si=rkJ9s03Q9_DSD99D
+- **Live Deployment:** https://peblo-notes-swart.vercel.app/
 
 ---
 
