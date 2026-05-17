@@ -8,8 +8,9 @@ Think Evernote meets AI: three-panel workspace, markdown support, keyboard-first
 
 ## Submission Assets Provided by Candidate
 
-- **Demo Video:** [Watch on YouTube](https://youtu.be/C0KbjGEvhhU?si=aO8sb1S9VDL8V7EK)
-- **Live Deployment:** [View Live App](https://peblo-notes-swart.vercel.app/)
+**[TODO FOR YOU: Please add your links below before submitting]**
+- **Demo Video:** [INSERT YOUR YOUTUBE/LOOM LINK HERE]
+- **Live Deployment:** [INSERT YOUR VERCEL/RENDER LINK HERE - OPTIONAL]
 
 ---
 
@@ -161,13 +162,10 @@ PebloNotes/
 ## Sample Outputs
 
 ### Application Screenshots
-*(Add your screenshots to an `assets/` folder and link them here, or drag and drop images directly into GitHub to auto-generate the markdown)*
 
-```markdown
-<!-- Example of how to link your screenshots once you have them -->
 ![Workspace View](assets/workspace.png)
+
 ![Insights Dashboard](assets/insights.png)
-```
 
 ### AI-Generated Summary & Action Items
 *(Example response from `/ai/generate-summary`)*
